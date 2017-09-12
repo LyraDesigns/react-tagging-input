@@ -14,7 +14,8 @@ type Props = {
   uniqueTags?: boolean,
   readOnly?: boolean,
   onAdded?: Function,
-  onRemoved?: Function,
+	onRemoved?: Function,
+	onClicked?: Function,
   onInputChange?: Function,
   id?: string,
   removeTagIcon?: string | Object
@@ -33,7 +34,7 @@ const Tags = ({
 	let input: HTMLInputElement;
 
 	const addTag = (): void => {
-		const { onAdded } = props;
+		const { onAdded, id } = props;
 
 		if (maxTags > 0){
 			if (tags.length >= maxTags) return;
@@ -47,23 +48,32 @@ const Tags = ({
       }
 
       if (typeof onAdded !== 'undefined'){
-        onAdded(value);
+        onAdded(value, id);
       }
 
       input.value = '';
     }
 	};
 
-	const removeTag = (index: number): void => {
-		const { onRemoved } = props;
+	const removeTag = index number): void => {
+		const { onRemoved, id } = props;
 		const value: string = tags[index];
 
 		if (typeof onRemoved !== 'undefined'){
-			onRemoved(value, index);
+			onRemoved(value, index, id);
 		}
 	};
 
-	const onInputKey = (e: KeyboardEvent): void => {
+	const clickTag = index number): void => {
+		const { onClicked, id } = props;
+		const value: string = tags[index];
+
+		if (typeof onClicked !== 'undefined'){
+			onClicked(value, index, id);
+		}
+	};
+
+	const onInputKey = e KeyboardEvent): void => {
 		switch (e.keyCode){
 			case Tags.KEYS.backspace:
 				if (tags.length === 0 || !deleteOnKeyPress) return;
@@ -89,7 +99,7 @@ const Tags = ({
 		}
 	};
 
-	const onInputChange = (e: SyntheticInputEvent): void => {
+	const onInputChange = e SyntheticInputEvent): void => {
 		const value: string = e.target.value.trim();
 
 		if (typeof props.onInputChange !== 'undefined'){
@@ -106,7 +116,8 @@ const Tags = ({
 			name={tag}
 			readOnly={readOnly}
 			removeTagIcon={removeTagIcon}
-			onRemoveTag={removeTag.bind(this, v)} />;
+			onRemoveTag={removeTag.bind(this, v)}
+			onClickTag={clickTag.bind(this, v)} />;
 	});
 
 	//-- Render the input field

@@ -2,8 +2,9 @@
 
 import React  from 'react';
 
-const Tag = (props: Object) => {
-	const onRemoveClick = (e: MouseEvent) => {
+const Tag = props Object) => {
+
+	const onRemoveClick = e MouseEvent) => {
 		e.preventDefault();
 
 		props.onRemoveTag(e);
@@ -15,9 +16,18 @@ const Tag = (props: Object) => {
 		</a>
 	) : null;
 
+	const onTagClick = e MouseEvent) => {
+		e.preventDefault();
+		props.onClickTag(e);
+	};
+
+	const nameObject: ?React$Element<any> = !props.readOnly ? (
+		<span onClick={onTagClick}>{props.name}</span>
+	) : null;
+
 	return (
 		<li>
-			{props.name}
+			{nameObject}
 			{removeIcon}
 		</li>
 	);
