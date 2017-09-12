@@ -55,7 +55,7 @@ const Tags = ({
     }
 	};
 
-	const removeTag = index number): void => {
+	const removeTag = (index: number): void => {
 		const { onRemoved, id } = props;
 		const value: string = tags[index];
 
@@ -64,7 +64,7 @@ const Tags = ({
 		}
 	};
 
-	const clickTag = index number): void => {
+	const clickTag = (index: number): void => {
 		const { onClicked, id } = props;
 		const value: string = tags[index];
 
@@ -73,7 +73,7 @@ const Tags = ({
 		}
 	};
 
-	const onInputKey = e KeyboardEvent): void => {
+	const onInputKey = (e: KeyboardEvent): void => {
 		switch (e.keyCode){
 			case Tags.KEYS.backspace:
 				if (tags.length === 0 || !deleteOnKeyPress) return;
@@ -99,7 +99,7 @@ const Tags = ({
 		}
 	};
 
-	const onInputChange = e SyntheticInputEvent): void => {
+	const onInputChange = (e: SyntheticInputEvent): void => {
 		const value: string = e.target.value.trim();
 
 		if (typeof props.onInputChange !== 'undefined'){

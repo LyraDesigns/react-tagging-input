@@ -2,9 +2,9 @@
 
 import React  from 'react';
 
-const Tag = props Object) => {
+const Tag = (props: Object) => {
 
-	const onRemoveClick = e MouseEvent) => {
+	const onRemoveClick = (e: MouseEvent) => {
 		e.preventDefault();
 
 		props.onRemoveTag(e);
@@ -16,7 +16,7 @@ const Tag = props Object) => {
 		</a>
 	) : null;
 
-	const onTagClick = e MouseEvent) => {
+	const onTagClick = (e: MouseEvent) => {
 		e.preventDefault();
 		props.onClickTag(e);
 	};
